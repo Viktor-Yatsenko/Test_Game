@@ -1,16 +1,13 @@
 using UnityEngine;
-
-
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    PlayerVisual ClassPlayerVisual;
-    public static Player Instance {get; private set;}
-
+    public static PlayerController Instance {get; private set;}
     public float movingSpeed;
     private Rigidbody2D rb;
-    private bool isFacingRight = true;
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
+    private bool Attack = false;
+    //private int AttackDamage = 5;
     private void Awake()
     {
         Instance = this;
@@ -18,10 +15,19 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("Mouse Down");
+                Attack = true;
+                Debug.Log("Mouse Down");
         }
+        else
+        {
+            Attack = false;
+        }
+    }
+    public bool isAttack()
+    {
+        return Attack;
     }
     void FixedUpdate()
     {
@@ -36,14 +42,12 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            //ClassPlayerVisual.FlipPlayer(-1);
-            FlipPlayer(-1);
+            PlayerVisual.Instance.FlipPlayer(-1);
             inputVector.x = -1f;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            //ClassPlayerVisual.FlipPlayer(1);
-            FlipPlayer(1);
+            PlayerVisual.Instance.FlipPlayer(1);
             inputVector.x = 1f;
         }
         rb.MovePosition(rb.position + inputVector.normalized * movingSpeed * Time.fixedDeltaTime);
@@ -59,18 +63,6 @@ public class Player : MonoBehaviour
     }
     public bool isRunning()
     {
-        //return RunningForClassPlayerVisual;
         return Running;
-        //return ClassPlayerVisual.Running;
-    }
-    public void FlipPlayer(float Horizontal)
-    {
-        if(isFacingRight && Horizontal < 0f || isFacingRight == false && Horizontal > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            var localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
     }
 }

@@ -5661,6 +5661,7 @@ GameObject:
   - component: {fileID: 522284393}
   - component: {fileID: 522284395}
   - component: {fileID: 522284394}
+  - component: {fileID: 522284396}
   m_Layer: 0
   m_Name: EnemyVisual
   m_TagString: Untagged
@@ -5760,6 +5761,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &522284396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522284392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02392785d186409409fb69f5e0b483c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 522284395}
 --- !u!1 &559981756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5884,6 +5898,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2004081006}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &601699323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601699319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c9cd9f70f5662478e301dab58bede5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 601699321}
+  moveSpeed: 4
+--- !u!70 &601699324
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601699319}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.22624086, y: -0.1601854}
+  m_Size: {x: 0.6201865, y: 0.23046112}
+  m_Direction: 1
 --- !u!1 &699170788
 GameObject:
   m_ObjectHideFlags: 0
@@ -5910,8 +5975,8 @@ Transform:
   m_GameObject: {fileID: 699170788}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 767526157}
@@ -6068,7 +6133,7 @@ GameObject:
   - component: {fileID: 1133181346}
   - component: {fileID: 1133181347}
   - component: {fileID: 1133181348}
-  - component: {fileID: 1133181344}
+  - component: {fileID: 1133181349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6076,19 +6141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1133181344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133181343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7cf02bed37a6940866aae2bbb469e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingSpeed: 10
 --- !u!4 &1133181346
 Transform:
   m_ObjectHideFlags: 0
@@ -6166,9 +6218,22 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.057192206, y: -0.42726067}
-  m_Size: {x: 0.34276414, y: 0.36607665}
+  m_Offset: {x: -0.051515102, y: -0.18030664}
+  m_Size: {x: 0.20651364, y: 0.7577968}
   m_Direction: 0
+--- !u!114 &1133181349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133181343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7cf02bed37a6940866aae2bbb469e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingSpeed: 5
 --- !u!1001 &1156124517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6583,7 +6648,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1424383095653874445, guid: 2fad0ec419ab0b546a490f8d31499f05,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 601699323}
+    - targetCorrespondingSourceObject: {fileID: 1424383095653874445, guid: 2fad0ec419ab0b546a490f8d31499f05,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 601699320}
+    - targetCorrespondingSourceObject: {fileID: 1424383095653874445, guid: 2fad0ec419ab0b546a490f8d31499f05,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 601699324}
   m_SourcePrefab: {fileID: 100100000, guid: 2fad0ec419ab0b546a490f8d31499f05, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
