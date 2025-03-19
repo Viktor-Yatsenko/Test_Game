@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
     private Vector2 direction;
-    //private int Damage = 5;
+    // private int Damage = 5;
     // void Update()
     // {
         
@@ -15,6 +15,14 @@ public class EnemyController : MonoBehaviour
         direction = (PlayerController.Instance.transform.position - transform.position).normalized;
         rb.linearVelocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     // [SerializeField] private SpriteRenderer spriteRenderer;
     // void Update()

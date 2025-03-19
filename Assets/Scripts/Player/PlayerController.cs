@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
-    private bool Attack = false;
+    private bool AttackBool = false;
+    //private int AttackBool = 0;
+    private int Attack = 0;
     //private int AttackDamage = 5;
     private void Awake()
     {
@@ -17,17 +19,36 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-                Attack = true;
-                Debug.Log("Mouse Down");
+            Attack = 1;
+            //AttackBool = true;
+            Debug.Log("Mouse Down");
+            //Attack = 1;
         }
         else
         {
-            Attack = false;
+            //Attack = 0;
+            //AttackBool = false;
+            Attack = 0;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            //AttackBool = true;
+            Debug.Log("Mouse Down");
+            AttackBool = true;
+        }
+        else
+        {
+            AttackBool = false;
+            //AttackBool = false;
         }
     }
-    public bool isAttack()
+    public int isAttack()
     {
         return Attack;
+    }
+    public bool isAttackBool()
+    {
+        return AttackBool;
     }
     void FixedUpdate()
     {

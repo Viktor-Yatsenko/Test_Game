@@ -15,4 +15,5 @@ public class EnemyVisual : MonoBehaviour
             spriteRenderer.flipX = false;
         }
     }
+    
 }
