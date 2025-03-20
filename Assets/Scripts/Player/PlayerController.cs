@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
@@ -6,10 +7,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
-    private bool AttackBool = false;
+    //private bool AttackBool = false;
     //private int AttackBool = 0;
-    private int Attack = 0;
+    //private bool Attack = false;
+    private bool isHoldingAttack;
+    //private string Attack;
+    private string IsAttacking;
     //private int AttackDamage = 5;
+    
     private void Awake()
     {
         Instance = this;
@@ -17,39 +22,82 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0)) // Однократный удар при клике
         {
-            Attack = 1;
-            //AttackBool = true;
-            Debug.Log("Mouse Down");
-            //Attack = 1;
+            Attack();
+            //Attack = "Attack";
         }
-        else
+
+        if (Input.GetMouseButton(0)) // Повторяющаяся атака при удержании
         {
-            //Attack = 0;
-            //AttackBool = false;
-            Attack = 0;
+            if (!isHoldingAttack)
+            {
+                isHoldingAttack = true;
+                IsAttacking = "IsAttacking";
+                //animator.SetBool("IsAttacking", true);
+            }
         }
-        if (Input.GetMouseButtonUp(0))
+        else if (isHoldingAttack) // Остановка повторной атаки при отпускании
         {
-            //AttackBool = true;
-            Debug.Log("Mouse Down");
-            AttackBool = true;
+            isHoldingAttack = false;
+            //animator.SetBool("IsAttacking", false);
         }
-        else
-        {
-            AttackBool = false;
-            //AttackBool = false;
-        }
+
+        // if (Input.GetMouseButton(0))
+        // {
+        //     //Attack = 1;
+        //     AttackBool = true;
+        //     Debug.Log("Mouse Down");
+        //     //Attack = 1;
+        // }
+        // else
+        // {
+        //     //Attack = 0;
+        //     AttackBool = false;
+        //     //Attack = 0;
+        // }
+
+
+
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     AttackBool = true;
+        //     Debug.Log("Mouse Down");
+        //     //AttackBool = 1;
+        // }
+        // else
+        // {
+        //     //AttackBool = 0;
+        //     AttackBool = false;
+        // }
+        // if (Input.GetMouseButtonUp(0))
+        // {
+        //     //AttackBool = true;
+        //     Debug.Log("Mouse Down");
+        //     AttackBool = true;
+        // }
+        // else
+        // {
+        //     AttackBool = false;
+        //     //AttackBool = false;
+        // }
     }
-    public int isAttack()
+    // public bool isAttackBool()
+    // {
+    //     return isAttack;
+    // }
+    public string Attack()
     {
-        return Attack;
+        return "Attack";
     }
-    public bool isAttackBool()
-    {
-        return AttackBool;
-    }
+    // public bool isAttack()
+    // {
+    //     return Attack;
+    // }
+    // public bool isAttackBool()
+    // {
+    //     return AttackBool;
+    // }
     void FixedUpdate()
     {
         Vector2 inputVector = new Vector2(0, 0);
