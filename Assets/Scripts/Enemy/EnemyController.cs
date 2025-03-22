@@ -1,14 +1,14 @@
 using UnityEngine;
-
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
+    public static EnemyController Instance {get; private set;}
     private Vector2 direction;
     // private int Damage = 5;
     // void Update()
     // {
-        
+
     // }
     void FixedUpdate()
     {
@@ -19,21 +19,8 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            EnemyVisual.Instance.EnemyAttack();
+            //Destroy(gameObject);
         }
     }
-
-
-    // [SerializeField] private SpriteRenderer spriteRenderer;
-    // void Update()
-    // {
-    //     if(PlayerController.Instance.transform.position.x > transform.position.x)
-    //     {
-    //         spriteRenderer.flipX = true;
-    //     }
-    //     else
-    //     {
-    //         spriteRenderer.flipX = false;
-    //     }
-    // }
 }
