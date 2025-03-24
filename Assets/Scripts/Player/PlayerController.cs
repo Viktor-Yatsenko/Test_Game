@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private bool Running = false;
     private bool attackBool;
     private bool attackTriggered;
+    public float HP = 100f;
+    private Collision2D collision;
     private void Awake()
     {
         Instance = this;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {attackTriggered = true;}
         if (Input.GetMouseButton(0)) {if (!attackBool) {attackBool = true;}}
         else if (attackBool) {attackBool = false;}
+        Debug.Log(HP);
     }
     void FixedUpdate()
     {
@@ -38,6 +41,11 @@ public class PlayerController : MonoBehaviour
         {
             PlayerVisual.Instance.TriggerAttack();
             attackTriggered = false;
+        }
+        if (HP <= 0) 
+        {
+            PlayerVisual.Instance.Death();
+            //Destroy(gameObject);
         }
     }
 }

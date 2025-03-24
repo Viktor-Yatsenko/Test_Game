@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4690236030811372980}
   moveSpeed: 4
+  deathAnimation: {fileID: 1946733166526131457, guid: e883dc6bb48886341bdd8a0b081a06c5,
+    type: 3}
 --- !u!1 &7827454486880935809
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,3 +239,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1291061546289823561}
+  deathAnimation: {fileID: 1946733166526131457, guid: e883dc6bb48886341bdd8a0b081a06c5,
+    type: 3}
