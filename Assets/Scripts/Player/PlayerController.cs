@@ -2,13 +2,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance {get; private set;}
+    public IfEndGame ifEndGame;
     public float movingSpeed;
     private Rigidbody2D rb;
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
     private bool attackBool;
     private bool attackTriggered;
-    public float HP = 100f;
+    public int hp = 100;
     private Collision2D collision;
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {attackTriggered = true;}
         if (Input.GetMouseButton(0)) {if (!attackBool) {attackBool = true;}}
         else if (attackBool) {attackBool = false;}
-        Debug.Log(HP);
+        Debug.Log(hp);
     }
     void FixedUpdate()
     {
@@ -42,10 +43,9 @@ public class PlayerController : MonoBehaviour
             PlayerVisual.Instance.TriggerAttack();
             attackTriggered = false;
         }
-        if (HP <= 0) 
+        if (SliderController.Instance.currentHealth <=0)
         {
-            PlayerVisual.Instance.Death();
-            //Destroy(gameObject);
+            ifEndGame.IsDeath();
         }
     }
 }

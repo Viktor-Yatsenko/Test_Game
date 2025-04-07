@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject deathAnimation;
     public static EnemyController Instance {get; private set;}
     private Vector2 direction;
-    private float EnemyDamage = 25f;
+    //private int EnemyDamage = 25;
     void Update()
     {
 
@@ -21,8 +21,8 @@ public class EnemyController : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             EnemyVisual.Instance.EnemyAttack();
-            PlayerController.Instance.HP = PlayerController.Instance.HP - EnemyDamage;
-            //if (PlayerController.Instance.HP <= 0) {Destroy(gameObject, PlayerVisual.Instance.animator.GetAnimatorTransitionInfo(0));}
+            //PlayerController.Instance.hp = PlayerController.Instance.hp - EnemyDamage;
+            SliderController.Instance.TakeDamage(25f);
             Destroy(gameObject);
             Instantiate(deathAnimation, transform.position, transform.rotation);
         }
