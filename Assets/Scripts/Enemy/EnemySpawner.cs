@@ -2,8 +2,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    private float spawnTimer;
     public float spawnInterval;
+    private float spawnTimer;
+    [SerializeField] private int maxNumberEnemy;
     void Update()
     {
         spawnTimer += Time.deltaTime;
@@ -11,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnTimer = 0;
             SpawnEnemy();
+            maxNumberEnemy++;
+            if(maxNumberEnemy >= 2) {gameObject.SetActive(false);}
         }
     }
     private void SpawnEnemy() {Instantiate(enemyPrefab, transform.position, transform.rotation);}

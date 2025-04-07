@@ -112,7 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4690236030811372980}
-  moveSpeed: 4
+  moveSpeed: 2
+  attackRange: 0.1
+  attackCooldown: 1
+  damageAmount: 25
   deathAnimation: {fileID: 1946733166526131457, guid: e883dc6bb48886341bdd8a0b081a06c5,
     type: 3}
 --- !u!1 &7827454486880935809

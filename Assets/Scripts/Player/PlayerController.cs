@@ -2,14 +2,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance {get; private set;}
-    public IfEndGame ifEndGame;
     public float movingSpeed;
+    public int hp = 100;
+    [SerializeField] private IfEndGame ifEndGame;
     private Rigidbody2D rb;
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
     private bool attackBool;
     private bool attackTriggered;
-    public int hp = 100;
     private Collision2D collision;
     private void Awake()
     {

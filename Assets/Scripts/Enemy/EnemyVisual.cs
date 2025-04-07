@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR.Haptics;
 public class EnemyVisual : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private GameObject deathAnimation;
     public static EnemyVisual Instance {get; private set;}
     private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject deathAnimation;
     public void Awake() 
     {
         Instance = this;
