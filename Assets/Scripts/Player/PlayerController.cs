@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance {get; private set;}
     public float movingSpeed;
     public int hp = 100;
+    internal float staminaCostPerAttack = 10f;
     [SerializeField] private IfEndGame ifEndGame;
     private Rigidbody2D rb;
     private float minMovingSpeed = 0.1f;
@@ -18,10 +19,26 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) {attackTriggered = true;}
-        if (Input.GetMouseButton(0)) {if (!attackBool) {attackBool = true;}}
+        if(Input.GetMouseButtonDown(0))
+        {
+            PlayerVisual.Instance.animator.SetBool("Attack", true);
+        }
+        if (Input.GetMouseButton(0)) 
+        {
+            PlayerVisual.Instance.animator.SetBool("IsAttacking", true);
+            if (!attackBool) 
+            {
+                attackBool = true;
+            }
+        }
         else if (attackBool) {attackBool = false;}
-        Debug.Log(hp);
+        //Recovery stamina
+        PlayerUIController.Instance.UpdateStaminaBar( PlayerUIController.Instance.currentStamina,  PlayerUIController.Instance.maxStamina);
+        if(!attackBool && PlayerUIController.Instance.currentStamina < PlayerUIController.Instance.maxStamina)
+        {
+            PlayerUIController.Instance.currentStamina += PlayerUIController.Instance.regenerateStamina * Time.deltaTime;
+            PlayerUIController.Instance.currentStamina = Mathf.Min(PlayerUIController.Instance.currentStamina, PlayerUIController.Instance.maxStamina);
+        }
     }
     void FixedUpdate()
     {
@@ -43,7 +60,7 @@ public class PlayerController : MonoBehaviour
             PlayerVisual.Instance.TriggerAttack();
             attackTriggered = false;
         }
-        if (SliderController.Instance.currentHealth <=0)
+        if (PlayerUIController.Instance.currentHealth <=0)
         {
             ifEndGame.IsDeath();
         }

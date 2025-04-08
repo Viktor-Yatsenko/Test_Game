@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval & SliderController.Instance.currentHealth > 0)
+        if (spawnTimer >= spawnInterval & PlayerUIController.Instance.currentHealth > 0)
         {
             spawnTimer = 0;
             SpawnEnemy();

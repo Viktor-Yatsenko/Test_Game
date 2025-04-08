@@ -11,9 +11,12 @@ public class PlayerVisual : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    //public void Death(bool HPBool) {animator.SetBool("Death", HPBool);}
+    private void SpendStaminaOnAttack() //Animation event
+    {
+        PlayerUIController.Instance.TakeStamina(PlayerController.Instance.staminaCostPerAttack);
+    }
+    //Animation
     public void Death() {animator.SetTrigger("Death");}
-    //public void Death() {animator.SetInteger("Death", PlayerController.Instance.HP);}
     public void TriggerAttack() {animator.SetTrigger("Attack");}
     public void isAttack(bool attackBool) {animator.SetBool("IsAttacking", attackBool);}
     public void isRunning(bool Running) {animator.SetBool("IsRunning", Running);}

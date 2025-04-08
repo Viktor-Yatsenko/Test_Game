@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
 public class EnemyVisual : MonoBehaviour
 {
     public static EnemyVisual Instance {get; private set;}
