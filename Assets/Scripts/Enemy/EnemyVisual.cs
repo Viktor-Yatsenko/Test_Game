@@ -15,7 +15,10 @@ public class EnemyVisual : MonoBehaviour
     private void Update()
     {
         //Flip enemy
-        if(PlayerController.Instance.transform.position.x > transform.position.x) {spriteRenderer.flipX = true;}
-        else {spriteRenderer.flipX = false;}
+        float direction = PlayerController.Instance.transform.position.x - transform.position.x;
+        if (Mathf.Abs(direction) > 0.1f)
+        {
+            spriteRenderer.flipX = direction > 0;
+        }
     } 
 }

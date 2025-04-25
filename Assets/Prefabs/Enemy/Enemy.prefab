@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5153158871152812582}
   - component: {fileID: 4690236030811372980}
-  - component: {fileID: 8522308740514960260}
   - component: {fileID: 7262398696861293081}
+  - component: {fileID: 879061583327021241}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -62,8 +62,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &8522308740514960260
-CapsuleCollider2D:
+--- !u!114 &7262398696861293081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872234711737099844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c9cd9f70f5662478e301dab58bede5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4690236030811372980}
+  moveSpeed: 2
+  attackRange: 0.1
+  attackCooldown: 1
+  damage: 25
+  deathAnimation: {fileID: 1946733166526131457, guid: e883dc6bb48886341bdd8a0b081a06c5,
+    type: 3}
+--- !u!58 &879061583327021241
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,32 +111,12 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.05544144, y: -0.0029549599}
-  m_Size: {x: 0.73561585, y: 1.0967207}
-  m_Direction: 0
---- !u!114 &7262398696861293081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4872234711737099844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c9cd9f70f5662478e301dab58bede5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4690236030811372980}
-  moveSpeed: 2
-  attackRange: 0.1
-  attackCooldown: 1
-  damage: 25
-  deathAnimation: {fileID: 1946733166526131457, guid: e883dc6bb48886341bdd8a0b081a06c5,
-    type: 3}
+  m_Offset: {x: -0.04335618, y: -0.040452957}
+  m_Radius: 0.3825693
 --- !u!1 &7827454486880935809
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +131,7 @@ GameObject:
   - component: {fileID: 847361310974244761}
   m_Layer: 7
   m_Name: EnemyVisual
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

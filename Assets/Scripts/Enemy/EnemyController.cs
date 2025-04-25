@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
@@ -9,12 +10,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private float damage = 25f;
     [SerializeField] private GameObject deathAnimation;
-    
     internal float health = 100f;
 
     private Transform player;
     private float lastAttackTime;
     private Vector2 direction;
+    // private void Awake()
+    // {
+    //     rb = GetComponent<Rigidbody2D>();
+    // }    
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -38,13 +42,17 @@ public class EnemyController : MonoBehaviour
         }
         if(health <= 0)
         {
-            EnemyVisual.Instance.EnemyDeath();
+            //Enabled physics
             GetComponent<Collider2D>().enabled = false;
             this.enabled = false;
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            //Animation and destroy
+            EnemyVisual.Instance.EnemyDeath();
             Destroy(gameObject, 3f);
+            QuestManager.Instance.AddKill(); //Quest ++
         }
         Debug.Log(health);
-
     }
     public void TackeDamage(float playerDamage)
     {
