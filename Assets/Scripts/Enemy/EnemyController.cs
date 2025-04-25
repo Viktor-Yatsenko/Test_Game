@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private float damage = 25f;
     [SerializeField] private GameObject deathAnimation;
+    
+    internal float health = 100f;
+
     private Transform player;
     private float lastAttackTime;
     private Vector2 direction;
@@ -32,6 +36,19 @@ public class EnemyController : MonoBehaviour
                 lastAttackTime = Time.time;
             }
         }
+        if(health <= 0)
+        {
+            EnemyVisual.Instance.EnemyDeath();
+            GetComponent<Collider2D>().enabled = false;
+            this.enabled = false;
+            Destroy(gameObject, 3f);
+        }
+        Debug.Log(health);
+
+    }
+    public void TackeDamage(float playerDamage)
+    {
+        health -= playerDamage;
     }
     public void FixedUpdate()
     {

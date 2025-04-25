@@ -96,8 +96,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.047043562, y: -0.019750863}
-  m_Size: {x: 0.5424638, y: 0.92876226}
+  m_Offset: {x: -0.05544144, y: -0.0029549599}
+  m_Size: {x: 0.73561585, y: 1.0967207}
   m_Direction: 0
 --- !u!114 &7262398696861293081
 MonoBehaviour:
@@ -115,7 +115,7 @@ MonoBehaviour:
   moveSpeed: 2
   attackRange: 0.1
   attackCooldown: 1
-  damageAmount: 25
+  damage: 25
   deathAnimation: {fileID: 1946733166526131457, guid: e883dc6bb48886341bdd8a0b081a06c5,
     type: 3}
 --- !u!1 &7827454486880935809

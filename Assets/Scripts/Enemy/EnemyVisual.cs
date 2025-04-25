@@ -11,6 +11,7 @@ public class EnemyVisual : MonoBehaviour
         animator = GetComponent<Animator>();
     }
     public void EnemyAttack() {animator.SetTrigger("Attack");}
+    public void EnemyDeath() {animator.SetTrigger("Death");}
     private void Update()
     {
         //Flip enemy

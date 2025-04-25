@@ -136,3 +136,4 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4872234711737099844, guid: 9d7bef904c7ef5a459c9fa419789bfba,
     type: 3}
   spawnInterval: 2
+  maxNumberEnemy: 0
