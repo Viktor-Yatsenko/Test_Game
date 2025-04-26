@@ -5,33 +5,15 @@ public class PlayerVisual : MonoBehaviour
     public Animator animator;
     private bool isFacingRight = true;
     private SpriteRenderer spriteRenderer;
-    //Audio
-    [Header("Audio attack")]
-    [SerializeField] private AudioClip missSound;
-    [SerializeField] private AudioClip hitSound;
-    private AudioSource audioSource;
-    private bool hitEnemy = false;
     private void Awake()
     {
         Instance = this;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
     }
     private void SpendStaminaOnAttack() //Animation event
     {
         PlayerUIController.Instance.TakeStamina(PlayerController.Instance.staminaCostPerAttack);
-    }
-    //Sounds
-    public void StartAttackSound(bool _hitEnemy)
-    {
-        hitEnemy = _hitEnemy;
-        animator.SetTrigger("Attack");
-    }
-    public void PlayAttackSound()
-    {
-        if(hitEnemy) {audioSource.PlayOneShot(hitSound);}
-        else {audioSource.PlayOneShot(missSound);}
     }
     //Animation
     public void Death() {animator.SetTrigger("Death");}

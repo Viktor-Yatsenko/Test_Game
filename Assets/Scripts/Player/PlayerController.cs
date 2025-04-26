@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
     private bool attackBool;
-    private bool hitEnemy; //test
     private bool attackTriggered;
     private Collision2D collision;
     private void Awake()
@@ -23,7 +22,6 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             PlayerVisual.Instance.animator.SetBool("Attack", true);
-            //PlayerVisual.Instance.StartAttack(_hitEnemy: true);
         }
         if (Input.GetMouseButton(0)) 
         {
@@ -50,17 +48,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) {PlayerVisual.Instance.FlipPlayer(-1); inputVector.x = -1f;}
         if (Input.GetKey(KeyCode.S)) {inputVector.y = -1f;}
         if (Input.GetKey(KeyCode.D)) {PlayerVisual.Instance.FlipPlayer(1); inputVector.x = 1f;}
+        bool wasRunning = Running;
         rb.MovePosition(rb.position + inputVector.normalized * movingSpeed * Time.fixedDeltaTime);
         //Player is running ?
         if (Mathf.Abs(inputVector.x) > minMovingSpeed || 
         Mathf.Abs(inputVector.y) > minMovingSpeed) {Running = true;}
         else {Running = false;}
+        if (Running != wasRunning) {SoundController.Instance.StartRunningSound(Running);}
         //Call animations
         PlayerVisual.Instance.isRunning(Running);
-        PlayerVisual.Instance.isAttack(attackBool);//hitEnemy
+        PlayerVisual.Instance.isAttack(attackBool);
         if (attackTriggered)
         {
-            PlayerVisual.Instance.TriggerAttack();//hitEnemy
+            PlayerVisual.Instance.TriggerAttack();
             attackTriggered = false;
         }
         if (PlayerUIController.Instance.currentHealth <=0)
