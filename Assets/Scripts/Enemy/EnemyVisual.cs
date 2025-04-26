@@ -2,7 +2,7 @@ using UnityEngine;
 public class EnemyVisual : MonoBehaviour
 {
     public static EnemyVisual Instance {get; private set;}
-    private Animator animator;
+    public Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject deathAnimation;
     public void Awake() 

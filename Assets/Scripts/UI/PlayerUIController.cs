@@ -6,7 +6,6 @@ public class PlayerUIController : MonoBehaviour
     public static PlayerUIController Instance {get; private set;}
     //Health
     [SerializeField] private Image imageHealth;
-    private float maxHealth = 100f;
     internal float currentHealth;
     //Mana
     [SerializeField] private Image imageMana;
@@ -25,7 +24,7 @@ public class PlayerUIController : MonoBehaviour
     private void Awake() {Instance = this;}
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = PlayerController.Instance.hp;
         UpdateHealthBar();
         currentMana = maxMana;
         UpdateManaBar();
@@ -35,12 +34,13 @@ public class PlayerUIController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        SoundController.Instance.StartDamageSound(true);
+        currentHealth = Mathf.Clamp(currentHealth, 0f, PlayerController.Instance.hp);
         UpdateHealthBar();
     }
     private void UpdateHealthBar()
     {
-        float fillAmount = currentHealth / maxHealth;
+        float fillAmount = currentHealth / PlayerController.Instance.hp;
         imageHealth.fillAmount = fillAmount;
     }
     public void TakeManaBar()

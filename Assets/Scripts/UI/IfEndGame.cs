@@ -4,6 +4,18 @@ public class IfEndGame : MonoBehaviour
 {
     public static IfEndGame Instance {get; private set;}
     private void Awake() {Instance = this;}
-    public void IsDeath() {gameObject.SetActive(true);}
-    public void RestartButton() {SceneManager.LoadScene("MainLevel");}
+    public void IsDeath() 
+    {
+        AudioListener.pause = true;
+        PlayerVisual.Instance.animator.enabled = true;
+        EnemyVisual.Instance.animator.enabled = true;
+        gameObject.SetActive(true);
+
+    }
+    public void RestartButton()
+    {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        SceneManager.LoadScene("MainLevel");
+    }
 }

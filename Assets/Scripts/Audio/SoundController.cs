@@ -11,13 +11,19 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioSource RunningAudioSource;
     [SerializeField] private AudioClip PlayerRunningSound;
     private bool isRunning = false;
+    [Header("Player takes damage")]
+    [SerializeField] private AudioSource DamageAudioSource;
+    [SerializeField] private AudioClip DamageSound;
+    private bool takeDamage = false;
+
     private void Awake()
     {
         Instance = this;
         //Set all AudioSource
         AudioSource[] sources = GetComponents<AudioSource>();
-        AttackAudioSource = sources[0]; //First source for attack
-        RunningAudioSource = sources[1]; //Second source for running
+        AttackAudioSource = sources[0];
+        RunningAudioSource = sources[1];
+        DamageAudioSource = sources[2];
         //Settings sourse for running
         RunningAudioSource.clip = PlayerRunningSound;
         RunningAudioSource.loop = true;
@@ -46,5 +52,11 @@ public class SoundController : MonoBehaviour
         {
             if (RunningAudioSource.isPlaying) {RunningAudioSource.Stop();}
         }
+    }
+    //Player takes damage
+    public void StartDamageSound(bool _takeDamage)
+    {
+        takeDamage = _takeDamage;
+        DamageAudioSource.PlayOneShot(DamageSound);
     }
 }

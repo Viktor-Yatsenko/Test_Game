@@ -15,6 +15,7 @@ public class QuestManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        Time.timeScale = 0f;
         startButton.onClick.AddListener(StartQuest);
         questPanel.SetActive(true);
         questCompletePanel.SetActive(false);
@@ -35,6 +36,7 @@ public class QuestManager : MonoBehaviour
     {
         questStarted = true;
         questPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
     public void AddKill()
     {
@@ -48,6 +50,9 @@ public class QuestManager : MonoBehaviour
     private IEnumerator CompleteQuestRoutine()
     {
         yield return new WaitForSeconds(2f);
+        AudioListener.pause = false;
+        PlayerVisual.Instance.animator.enabled = false;
+        EnemyVisual.Instance.animator.enabled = false;
         questCompletePanel.SetActive(true);
         PlayerController.Instance.enabled = false;
     }

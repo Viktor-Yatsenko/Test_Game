@@ -3,7 +3,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance {get; private set;}
     public float movingSpeed;
-    public int hp = 100;
+    internal float hp = 100f;
     internal float staminaCostPerAttack = 10f;
     [SerializeField] private IfEndGame ifEndGame;
     private Rigidbody2D rb;
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         }
         if (PlayerUIController.Instance.currentHealth <=0)
         {
+            Time.timeScale = 0f;
             ifEndGame.IsDeath();
         }
     }
