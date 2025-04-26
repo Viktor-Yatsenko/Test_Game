@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
         if ((Input.GetMouseButton(0) || Input.GetMouseButtonDown(0)) & Time.time >= lastAttackTime + attackCooldown)
         {
             Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemy);
+            bool hitEnemy = enemies.Length > 0; //checking to see if
+            PlayerVisual.Instance.StartAttackSound(_hitEnemy: hitEnemy);
             for (int i =0; i < enemies.Length; i++)
             {
                 enemies[i].GetComponent<EnemyController>().TackeDamage(playerDamage);

@@ -3,6 +3,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnInterval;
+    public int numberEnemies = 5;
     private float spawnTimer;
     [SerializeField] private int maxNumberEnemy;
     void Update()
@@ -13,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
             spawnTimer = 0;
             SpawnEnemy();
             maxNumberEnemy++;
-            if(maxNumberEnemy >= 2) {gameObject.SetActive(false);}
+            if(maxNumberEnemy >= numberEnemies) {gameObject.SetActive(false);}
         }
     }
     private void SpawnEnemy() {Instantiate(enemyPrefab, transform.position, transform.rotation);}

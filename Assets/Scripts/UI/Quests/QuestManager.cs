@@ -4,16 +4,15 @@ using UnityEngine.UI;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
-    public GameObject questPanel;         // UI панель с текстом квеста
-    public Text questText;                // Текст квеста
-    public Button startButton;            // Кнопка "Начать"
-    public GameObject questCompletePanel; // Панель "Квест выполнен"
+    public GameObject questPanel;
+    public Text questText;
+    public Button startButton;
+    public GameObject questCompletePanel;
     public Text questCompleateText;
-
     private int killCount = 0;
-    private int killGoal = 2;
+    private int killGoal = 5;
     private bool questStarted = false;
-     void Awake()
+    void Awake()
     {
         Instance = this;
         startButton.onClick.AddListener(StartQuest);
@@ -40,9 +39,7 @@ public class QuestManager : MonoBehaviour
     public void AddKill()
     {
         if (!questStarted) return;
-
         killCount++;
-
         if (killCount >= killGoal)
         {
             StartCoroutine(CompleteQuestRoutine());
@@ -50,8 +47,8 @@ public class QuestManager : MonoBehaviour
     }
     private IEnumerator CompleteQuestRoutine()
     {
-        GamePause.Instance.PauseGame(2f);
         yield return new WaitForSeconds(2f);
         questCompletePanel.SetActive(true);
+        PlayerController.Instance.enabled = false;
     }
 }
