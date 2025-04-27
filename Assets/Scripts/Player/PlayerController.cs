@@ -2,6 +2,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance {get; private set;}
+    private PlayerSound playerSound;
     public float movingSpeed;
     internal float hp = 100f;
     internal float staminaCostPerAttack = 10f;
@@ -15,7 +16,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();  
+    }
+    private void Start()
+    {
+        playerSound = FindAnyObjectByType<PlayerSound>();
     }
     void Update()
     {
@@ -54,7 +59,10 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(inputVector.x) > minMovingSpeed || 
         Mathf.Abs(inputVector.y) > minMovingSpeed) {Running = true;}
         else {Running = false;}
-        if (Running != wasRunning) {SoundController.Instance.StartRunningSound(Running);}
+        if (Running != wasRunning) 
+        {
+            playerSound.StartRunningSound(Running);
+        }
         //Call animations
         PlayerVisual.Instance.isRunning(Running);
         PlayerVisual.Instance.isAttack(attackBool);

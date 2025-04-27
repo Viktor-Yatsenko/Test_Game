@@ -1,62 +1,61 @@
 using UnityEngine;
-public class SoundController : MonoBehaviour
-{
-    public static SoundController Instance {get; private set;}
-    [Header("Player attack")]
-    [SerializeField] private AudioSource AttackAudioSource;
-    [SerializeField] private AudioClip PlayerMissSound;
-    [SerializeField] private AudioClip PlayerHitSound;
-    private bool hitEnemy = false;
-    [Header("Player running")]
-    [SerializeField] private AudioSource RunningAudioSource;
-    [SerializeField] private AudioClip PlayerRunningSound;
-    private bool isRunning = false;
-    [Header("Player takes damage")]
-    [SerializeField] private AudioSource DamageAudioSource;
-    [SerializeField] private AudioClip DamageSound;
-    private bool takeDamage = false;
+using UnityEngine.AddressableAssets;
 
-    private void Awake()
+public abstract class SoundController : MonoBehaviour
+{
+    public static SoundController Instance;
+    protected AudioSource audioSource;
+
+    //Player
+    //Player attack
+    protected AudioClip PlayerMissSound;
+    protected AudioClip PlayerHitSound;
+    protected bool hitEnemy = false;
+    //Player running
+    protected AudioSource RunningAudioSource;
+    protected AudioClip PlayerRunningSound;
+    protected bool isRunning = false;
+    //Player takes damage
+    protected AudioClip DamageSound;
+    protected bool takeDamage = false;
+    //Enemy
+    //Enemy attack
+    protected AudioClip EnemyAttackSound;
+    protected bool attackEnemy;
+    //Enemy death
+    protected AudioClip EnemyDeathSound;
+    protected bool enemyDeath;
+
+    public void Awake()
     {
         Instance = this;
         //Set all AudioSource
         AudioSource[] sources = GetComponents<AudioSource>();
-        AttackAudioSource = sources[0];
+        audioSource = sources[0];
         RunningAudioSource = sources[1];
-        DamageAudioSource = sources[2];
-        //Settings sourse for running
-        RunningAudioSource.clip = PlayerRunningSound;
-        RunningAudioSource.loop = true;
+
     }
-    //Player attack
-    public void StartAttackSound(bool _hitEnemy)
+    
+    private void Start() {LoadFileSound();}
+
+    private void LoadFileSound()
     {
-        hitEnemy = _hitEnemy;
-        PlayerVisual.Instance.animator.SetTrigger("Attack");
+        //Player
+        LoadSound("Assets/Sound Effects/Player/Sound miss attack.wav", clip => PlayerMissSound = clip);
+        LoadSound("Assets/Sound Effects/Player/Sound hit attack.wav", clip => PlayerHitSound = clip);
+        LoadSound("Assets/Sound Effects/Player/Player Running on Grass.wav", clip => PlayerRunningSound = clip);
+        LoadSound("Assets/Sound Effects/Player/Take damage.wav", clip => DamageSound = clip);
+        //Enemy
+        LoadSound("Assets/Sound Effects/Enemy/Enemy Attack.wav", clip => EnemyAttackSound = clip);
+
     }
-    public void PlayAttackSound()
+
+    private void LoadSound(string addressFile, System.Action<AudioClip> onLoaded)
     {
-        if(hitEnemy) {AttackAudioSource.PlayOneShot(PlayerHitSound);}
-        else {AttackAudioSource.PlayOneShot(PlayerMissSound);}
-    }
-    //Player running
-    public void StartRunningSound(bool _isRunning)
-    {
-        isRunning = _isRunning;
-        PlayerVisual.Instance.animator.SetBool("IsRunning", _isRunning);
-        if (isRunning)
+        Addressables.LoadAssetAsync<AudioClip>(addressFile).Completed += handle =>
         {
-            if (!RunningAudioSource.isPlaying) {RunningAudioSource.Play();}
-        }
-        else
-        {
-            if (RunningAudioSource.isPlaying) {RunningAudioSource.Stop();}
-        }
-    }
-    //Player takes damage
-    public void StartDamageSound(bool _takeDamage)
-    {
-        takeDamage = _takeDamage;
-        DamageAudioSource.PlayOneShot(DamageSound);
+            onLoaded?.Invoke(handle.Result);
+            Addressables.Release(handle);
+        };
     }
 }

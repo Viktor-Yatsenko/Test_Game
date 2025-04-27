@@ -1,16 +1,43 @@
-using UnityEngine;
-
-public class PlayerSound : MonoBehaviour
+public class PlayerSound : SoundController
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //Player attack
+    public void StartAttackSound(bool _hitEnemy)
     {
         
+        hitEnemy = _hitEnemy;
+        PlayerVisual.Instance.animator.SetTrigger("Attack");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayAttackSound()
     {
-        
+        if(hitEnemy) {audioSource.PlayOneShot(PlayerHitSound);}
+        else {audioSource.PlayOneShot(PlayerMissSound);}
+    }
+
+    //Player running
+    public void StartRunningSound(bool _isRunning)
+    {
+        isRunning = _isRunning;
+        PlayerVisual.Instance.animator.SetBool("IsRunning", _isRunning);
+        if (isRunning)
+        {
+            if (!RunningAudioSource.isPlaying) 
+            {
+                RunningAudioSource.clip = PlayerRunningSound;
+                RunningAudioSource.loop = true;
+                RunningAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (RunningAudioSource.isPlaying) {RunningAudioSource.Stop();}
+        }
+    }
+    
+    //Player takes damage
+    public void PlayDamageSound(bool _takeDamage)
+    {
+        takeDamage = _takeDamage;
+        audioSource.PlayOneShot(DamageSound);
     }
 }

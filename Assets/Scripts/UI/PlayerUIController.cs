@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerUIController : MonoBehaviour
 {
     public static PlayerUIController Instance {get; private set;}
+    private PlayerSound playerSound;
     //Health
     [SerializeField] private Image imageHealth;
     internal float currentHealth;
@@ -20,10 +21,10 @@ public class PlayerUIController : MonoBehaviour
     [SerializeField] private Image imageExperience;
     //private float maxExperience = 100f;
     internal float currentExperience;
-
     private void Awake() {Instance = this;}
     void Start()
     {
+        playerSound = FindAnyObjectByType<PlayerSound>();
         currentHealth = PlayerController.Instance.hp;
         UpdateHealthBar();
         currentMana = maxMana;
@@ -34,7 +35,7 @@ public class PlayerUIController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        SoundController.Instance.StartDamageSound(true);
+        playerSound.PlayDamageSound(true);
         currentHealth = Mathf.Clamp(currentHealth, 0f, PlayerController.Instance.hp);
         UpdateHealthBar();
     }
