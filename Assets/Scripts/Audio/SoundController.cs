@@ -19,6 +19,7 @@ public abstract class SoundController : MonoBehaviour
     protected AudioClip DamageSound;
     protected bool takeDamage = false;
     //Enemy
+    protected AudioSource EnemyAudioSource;
     //Enemy attack
     protected AudioClip EnemyAttackSound;
     protected bool attackEnemy;
@@ -28,29 +29,16 @@ public abstract class SoundController : MonoBehaviour
 
     public void Awake()
     {
-        Instance = this;
+        //Instance = this;
         //Set all AudioSource
-        AudioSource[] sources = GetComponents<AudioSource>();
-        audioSource = sources[0];
-        RunningAudioSource = sources[1];
-
-    }
-    
-    private void Start() {LoadFileSound();}
-
-    private void LoadFileSound()
-    {
-        //Player
-        LoadSound("Assets/Sound Effects/Player/Sound miss attack.wav", clip => PlayerMissSound = clip);
-        LoadSound("Assets/Sound Effects/Player/Sound hit attack.wav", clip => PlayerHitSound = clip);
-        LoadSound("Assets/Sound Effects/Player/Player Running on Grass.wav", clip => PlayerRunningSound = clip);
-        LoadSound("Assets/Sound Effects/Player/Take damage.wav", clip => DamageSound = clip);
-        //Enemy
-        LoadSound("Assets/Sound Effects/Enemy/Enemy Attack.wav", clip => EnemyAttackSound = clip);
+        //AudioSource[] sources = GetComponents<AudioSource>();
+        // audioSource = sources[0];
+        // RunningAudioSource = sources[1];
+        //EnemyaudioSource = sources[2]; // пофиксить для врага (придумать как сделать его отдельным)
 
     }
 
-    private void LoadSound(string addressFile, System.Action<AudioClip> onLoaded)
+    protected void LoadSound(string addressFile, System.Action<AudioClip> onLoaded)
     {
         Addressables.LoadAssetAsync<AudioClip>(addressFile).Completed += handle =>
         {

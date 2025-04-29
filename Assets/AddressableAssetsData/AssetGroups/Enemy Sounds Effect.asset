@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Enemy Sounds Effect
+  m_EditorClassIdentifier: 
+  m_GroupName: Enemy Sounds Effect
+  m_GUID: bf568dbfd4f57b54b98e6ba6671b7daa
+  m_SerializeEntries:
+  - m_GUID: 228a434ca9f954909a9176e45f877eaa
+    m_Address: Assets/Sound Effects/Enemy/Enemy Death.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac6034ade498bb94b87620cdf6eac48b
+    m_Address: Assets/Sound Effects/Enemy/Enemy Attack.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0e5533208bd912a4e90c50f937df5139, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d49e367b6ad68834688be1acec072dd7, type: 2}
+    - {fileID: 11400000, guid: 52189608ada778e4586111d9941242f6, type: 2}

@@ -5,7 +5,7 @@ AssetOrigin:
   productId: 159577
   packageName: Medieval Warrior Pack
   packageVersion: 1.0
-  assetPath: Assets/Medieval Warrior Pack/Sprites/Death.png
+  assetPath: Assets/Art/Player/Sprites/Death.png
   uploadId: 343852
 TextureImporter:
   internalIDToNameTable:

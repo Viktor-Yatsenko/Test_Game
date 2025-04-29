@@ -1,14 +1,26 @@
+using UnityEngine;
+
 public class PlayerSound : SoundController
 {
-    //Player attack
-    public void StartAttackSound(bool _hitEnemy)
+    public void Start() 
     {
-        
-        hitEnemy = _hitEnemy;
-        PlayerVisual.Instance.animator.SetTrigger("Attack");
+        AudioSource[] sources = GetComponents<AudioSource>();
+        audioSource = sources[0];
+        RunningAudioSource = sources[1];
+        LoadFileSound();
     }
 
-    public void PlayAttackSound()
+    private void LoadFileSound()
+    {
+        LoadSound("Assets/Sound Effects/Player/Sound miss attack.wav", clip => PlayerMissSound = clip);
+        LoadSound("Assets/Sound Effects/Player/Sound hit attack.wav", clip => PlayerHitSound = clip);
+        LoadSound("Assets/Sound Effects/Player/Player Running on Grass.wav", clip => PlayerRunningSound = clip);
+        LoadSound("Assets/Sound Effects/Player/Take damage.wav", clip => DamageSound = clip);
+    }
+    //Player attack
+    public void StartAttackSound(bool _hitEnemy) {hitEnemy = _hitEnemy;}
+
+    public void PlayAttackSound()//Animation event
     {
         if(hitEnemy) {audioSource.PlayOneShot(PlayerHitSound);}
         else {audioSource.PlayOneShot(PlayerMissSound);}
@@ -35,9 +47,32 @@ public class PlayerSound : SoundController
     }
     
     //Player takes damage
-    public void PlayDamageSound(bool _takeDamage)
+    //поменять на коррутину
+    public void PlayDamageSound(bool _takeDamage)//float delaySeconds =  0.7f
     {
         takeDamage = _takeDamage;
         audioSource.PlayOneShot(DamageSound);
+        //PlayDamageSound(_takeDamage);
+        //StartCoroutine(PlayDamageSoundCoroutine(_takeDamage, delaySeconds));
     }
+    private bool cache_takeDamage;
+    public void PlayDamageSoundWithDelay(bool _takeDamage, float delay)
+    {
+        cache_takeDamage = _takeDamage;
+        Invoke(nameof(PlayDamageSoundWithWrapper), delay);
+    }
+    private void PlayDamageSoundWithWrapper()
+    {
+        PlayDamageSound(cache_takeDamage);
+    }
+
+    // private System.Collections.IEnumerator PlayDamageSoundCoroutine(bool _takeDamage, float delaySeconds)
+    // {
+    //     if (delaySeconds > 0f)
+    //     {
+    //         yield return new WaitForSeconds(delaySeconds);
+    //     }
+    //     takeDamage = _takeDamage;
+    //     audioSource.PlayOneShot(DamageSound);
+    // }
 }

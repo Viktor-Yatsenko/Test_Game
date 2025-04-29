@@ -20,8 +20,6 @@ public class PlayerAttack : MonoBehaviour
         {
             Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemy);
             bool hitEnemy = enemies.Length > 0; //checking to see if
-            //SoundController.Instance.StartAttackSound(_hitEnemy: hitEnemy);
-            //PlayerSound.Instance.StartAttackSound(_hitEnemy: hitEnemy);
             playerSound.StartAttackSound(_hitEnemy: hitEnemy);
             for (int i =0; i < enemies.Length; i++)
             {

@@ -44,13 +44,12 @@ public class QuestManager : MonoBehaviour
         killCount++;
         if (killCount >= killGoal)
         {
-            StartCoroutine(CompleteQuestRoutine());
+            Invoke(nameof(CompleteQuest), 2f);
         }
     }
-    private IEnumerator CompleteQuestRoutine()
+    private void CompleteQuest()
     {
-        yield return new WaitForSeconds(2f);
-        AudioListener.pause = false;
+        AudioListener.volume = 0f;
         PlayerVisual.Instance.animator.enabled = false;
         EnemyVisual.Instance.animator.enabled = false;
         questCompletePanel.SetActive(true);

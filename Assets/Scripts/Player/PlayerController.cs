@@ -1,27 +1,32 @@
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance {get; private set;}
+    //public static PlayerController Instance {get; private set;}
+    public static PlayerController Instance;
     private PlayerSound playerSound;
     public float movingSpeed;
     internal float hp = 100f;
     internal float staminaCostPerAttack = 10f;
-    [SerializeField] private IfEndGame ifEndGame;
     private Rigidbody2D rb;
     private float minMovingSpeed = 0.1f;
     private bool Running = false;
     private bool attackBool;
     private bool attackTriggered;
     private Collision2D collision;
+    [Header("Scripts")]
+    [SerializeField] private IfEndGame ifEndGame;
+    //[SerializeField] private TimerManager timerManager;
     private void Awake()
     {
         Instance = this;
-        rb = GetComponent<Rigidbody2D>();  
+        rb = GetComponent<Rigidbody2D>();
     }
+
     private void Start()
     {
         playerSound = FindAnyObjectByType<PlayerSound>();
     }
+
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -46,6 +51,7 @@ public class PlayerController : MonoBehaviour
             PlayerUIController.Instance.currentStamina = Mathf.Min(PlayerUIController.Instance.currentStamina, PlayerUIController.Instance.maxStamina);
         }
     }
+    
     void FixedUpdate()
     {
         Vector2 inputVector = new Vector2(0, 0);
@@ -73,8 +79,34 @@ public class PlayerController : MonoBehaviour
         }
         if (PlayerUIController.Instance.currentHealth <=0)
         {
-            Time.timeScale = 0f;
-            ifEndGame.IsDeath();
+            
+            // добавить звук смерти
+            enabled = false;
+            PlayerVisual.Instance.Death();
+            AudioListener.pause = true;
+            //timerManager.RunAfter(2f, () => ifEndGame.Death());
+            
+            
+            TimerManager.Instance.RunAfter(2f, () => ifEndGame.Death());
+            //ifEndGame.Death();
+            //ifEndGame.DeathCoroutine();
+            
+
+            //if(ifEndGame !=null && ifEndGame.gameObject.activeInHierarchy)
+            //IfEndGame.Instance.gameObject.SetActive(true);
+            
+            // if (endGameObj != null)
+            // {
+            //     endGameObj.SetActive(true);
+            //     IfEndGame ifEndGame = endGameObj.GetComponent<IfEndGame>();
+            //     IfEndGame.Instance.DeathCoroutine();
+                
+            // }
+            
+            
+            //IfEndGame ifEndGame = endGameObj.GetComponent<IfEndGame>();
+       
+            //ifEndGame.Death();
         }
     }
 }

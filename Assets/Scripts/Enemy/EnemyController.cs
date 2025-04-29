@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public static EnemyController Instance {get; private set;}
+    private EnemySound enemySound;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float attackRange = 0.1f;
@@ -22,6 +23,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemySound = FindAnyObjectByType<EnemySound>();
     }
     void Update()
     {
@@ -36,7 +38,11 @@ public class EnemyController : MonoBehaviour
             if(Time.time >= lastAttackTime + attackCooldown)
             {
                 EnemyVisual.Instance.EnemyAttack();
-                PlayerUIController.Instance.TakeDamage(damage);
+                enemySound.StartAttackSound(true);
+                
+                PlayerUIController.Instance.TakeDamageWithDelay(damage, 0.7f);//поменять на коррутину
+                
+                //PlayerUIController.Instance.TakeDamage(damage);
                 lastAttackTime = Time.time;
             }
         }
