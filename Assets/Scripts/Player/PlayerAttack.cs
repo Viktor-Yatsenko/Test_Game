@@ -10,10 +10,12 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
     private float attackCooldown = 0.1f;
     private float lastAttackTime;
+    
     private void Start()
     {
         playerSound = FindAnyObjectByType<PlayerSound>();
     }
+
     public void Update()
     {
         if ((Input.GetMouseButton(0) || Input.GetMouseButtonDown(0)) & Time.time >= lastAttackTime + attackCooldown)
@@ -28,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
             lastAttackTime = Time.time;
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

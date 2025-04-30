@@ -1,6 +1,7 @@
 //Timer Manager for Unity
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //INSTRUCTION AND EXAMPLE
@@ -10,27 +11,34 @@ using UnityEngine;
 // Cancel("id") — Cancel by name (відмінити за ім'ям(id))
 // Binding to an object (Прив'язка до об'єкту): boundTo: gameObject
 
-// Accepts parameters (Принимает параметры)
-// Does not depend on Invoke or Coroutine — clean timer system (Не зависит от Invoke или Coroutine — чистая система таймеров)
+// Accepts parameters (Приймає параметри)
+// Does not depend on Invoke or Coroutine — clean timer system (Не залежить 
+// від Invoke или Coroutine — чиста система таймерів)
 
 // public void Play(string clip)
 // {
 //     Debug.Log($"Грає звук: {clip}");
 // }
 
+//If just set the time, there will be a pause (Якщо просто встановити час, буде пауза)
 // public void PlayWithDelay()
 // {
-//     TimerManagerPro.Instance.RunAfter(1.5f, () => Play("jumpClip"), id: "jump");
+//     TimerManager.Instance.RunAfter(1.5f);
+// }
+
+// public void PlayWithDelay()
+// {
+//     TimerManager.Instance.RunAfter(1.5f, () => Play("jumpClip"), id: "jump");
 // }
 
 // public void LoopAlert()
 // {
-//     TimerManagerPro.Instance.RunLoop(2f, () => Play("enemyAlert"), id: "alert", boundTo: gameObject);
+//     TimerManager.Instance.RunLoop(2f, () => Play("enemyAlert"), id: "alert", boundTo: gameObject);
 // }
 
 // public void StopAlert()
 // {
-//     TimerManagerPro.Instance.Cancel("alert");
+//     TimerManager.Instance.Cancel("alert");
 // }
 
 public class TimerManager : MonoBehaviour
@@ -93,7 +101,20 @@ public class TimerManager : MonoBehaviour
         }
     }
 
-    public void RunAfter(float delay, Action callback, string id = null, GameObject boundTo = null)
+    // public void RunAfter(float delay, Action callback, string id = null, GameObject boundTo = null)
+    // {
+    //     tasks.Add(new TimerTask
+    //     {
+    //         TimeRemaining = delay,
+    //         Interval = delay,
+    //         Callback = callback,
+    //         Loop = false,
+    //         Id = id,
+    //         BoundObject = boundTo
+    //     });
+    // }
+
+    public void RunAfter(float delay, Action callback = null, string id = null, GameObject boundTo = null)
     {
         tasks.Add(new TimerTask
         {

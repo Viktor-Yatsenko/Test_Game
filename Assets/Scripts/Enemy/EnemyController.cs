@@ -12,19 +12,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float damage = 25f;
     [SerializeField] private GameObject deathAnimation;
     internal float health = 100f;
-
     private Transform player;
     private float lastAttackTime;
     private Vector2 direction;
-    // private void Awake()
-    // {
-    //     rb = GetComponent<Rigidbody2D>();
-    // }    
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemySound = FindAnyObjectByType<EnemySound>();
     }
+
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -39,13 +36,11 @@ public class EnemyController : MonoBehaviour
             {
                 EnemyVisual.Instance.EnemyAttack();
                 enemySound.StartAttackSound(true);
-                
-                PlayerUIController.Instance.TakeDamageWithDelay(damage, 0.7f);//поменять на коррутину
-                
-                //PlayerUIController.Instance.TakeDamage(damage);
+                TimerManager.Instance.RunAfter(0.7f, () => PlayerUIController.Instance.TakeDamage(damage));
                 lastAttackTime = Time.time;
             }
         }
+
         if(health <= 0)
         {
             //Enabled physics
@@ -60,10 +55,12 @@ public class EnemyController : MonoBehaviour
         }
         Debug.Log(health);
     }
+
     public void TackeDamage(float playerDamage)
     {
         health -= playerDamage;
     }
+
     public void FixedUpdate()
     {
         direction = (PlayerController.Instance.transform.position - transform.position).normalized;

@@ -25,6 +25,7 @@ public class QuestManager : MonoBehaviour
         questText.alignment = TextAnchor.UpperCenter;
         questText.alignment = TextAnchor.MiddleCenter;
     }
+
     void FixedUpdate()
     {
         questCompleateText.text = "Завдання виконано!";
@@ -34,6 +35,7 @@ public class QuestManager : MonoBehaviour
     }
     void StartQuest()
     {
+        TimerManager.Instance.RunAfter(1f, () => PlayerController.Instance.enabled = true);
         questStarted = true;
         questPanel.SetActive(false);
         Time.timeScale = 1f;

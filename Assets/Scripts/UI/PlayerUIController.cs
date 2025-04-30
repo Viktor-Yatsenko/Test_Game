@@ -37,27 +37,11 @@ public class PlayerUIController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        //PlayerUIController.Instance.TakeDamageWithDelay(damage, 0.7f);
-        //добавить задержку в 0.7f
         currentHealth -= damage;
         playerSound.PlayDamageSound(true);
-        //playerSound.PlayDamageSoundWithDelay(true, 0.7f);
         currentHealth = Mathf.Clamp(currentHealth, 0f, PlayerController.Instance.hp);
         UpdateHealthBar();
     }
-    //Wrapper
-    private float cacheDamage;
-    public void TakeDamageWithDelay(float damage, float delay)
-    {
-        cacheDamage = damage;
-        Invoke(nameof(TakeDamageWithWrapper), delay);
-    }
-    private void TakeDamageWithWrapper()
-    {
-        TakeDamage(cacheDamage);
-    }
-
-    
 
     private void UpdateHealthBar()
     {

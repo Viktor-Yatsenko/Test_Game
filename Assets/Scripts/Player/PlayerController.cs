@@ -1,7 +1,6 @@
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
-    //public static PlayerController Instance {get; private set;}
     public static PlayerController Instance;
     private PlayerSound playerSound;
     public float movingSpeed;
@@ -15,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private Collision2D collision;
     [Header("Scripts")]
     [SerializeField] private IfEndGame ifEndGame;
-    //[SerializeField] private TimerManager timerManager;
+
     private void Awake()
     {
         Instance = this;
@@ -29,10 +28,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Attack
         if(Input.GetMouseButtonDown(0))
         {
             PlayerVisual.Instance.animator.SetBool("Attack", true);
         }
+
         if (Input.GetMouseButton(0)) 
         {
             PlayerVisual.Instance.animator.SetBool("IsAttacking", true);
@@ -43,12 +44,26 @@ public class PlayerController : MonoBehaviour
             }
         }
         else if (attackBool) {attackBool = false;}
+
         //Recovery stamina
         PlayerUIController.Instance.UpdateStaminaBar( PlayerUIController.Instance.currentStamina,  PlayerUIController.Instance.maxStamina);
+        
         if(!attackBool && PlayerUIController.Instance.currentStamina < PlayerUIController.Instance.maxStamina)
         {
             PlayerUIController.Instance.currentStamina += PlayerUIController.Instance.regenerateStamina * Time.deltaTime;
             PlayerUIController.Instance.currentStamina = Mathf.Min(PlayerUIController.Instance.currentStamina, PlayerUIController.Instance.maxStamina);
+        }
+
+        // If low stamina, player don`t call attack
+        if(PlayerUIController.Instance.currentStamina < 10)
+        {
+            PlayerVisual.Instance.animator.SetBool("Attack", false);
+            PlayerVisual.Instance.animator.SetBool("IsAttacking", false);
+        }
+
+        if(PlayerUIController.Instance.currentStamina > 10)
+        {
+            PlayerVisual.Instance.animator.enabled = true;
         }
     }
     
@@ -61,14 +76,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) {PlayerVisual.Instance.FlipPlayer(1); inputVector.x = 1f;}
         bool wasRunning = Running;
         rb.MovePosition(rb.position + inputVector.normalized * movingSpeed * Time.fixedDeltaTime);
+
         //Player is running ?
         if (Mathf.Abs(inputVector.x) > minMovingSpeed || 
         Mathf.Abs(inputVector.y) > minMovingSpeed) {Running = true;}
         else {Running = false;}
+
         if (Running != wasRunning) 
         {
             playerSound.StartRunningSound(Running);
         }
+
         //Call animations
         PlayerVisual.Instance.isRunning(Running);
         PlayerVisual.Instance.isAttack(attackBool);
@@ -77,36 +95,14 @@ public class PlayerController : MonoBehaviour
             PlayerVisual.Instance.TriggerAttack();
             attackTriggered = false;
         }
+
         if (PlayerUIController.Instance.currentHealth <=0)
         {
-            
             // добавить звук смерти
             enabled = false;
             PlayerVisual.Instance.Death();
             AudioListener.pause = true;
-            //timerManager.RunAfter(2f, () => ifEndGame.Death());
-            
-            
             TimerManager.Instance.RunAfter(2f, () => ifEndGame.Death());
-            //ifEndGame.Death();
-            //ifEndGame.DeathCoroutine();
-            
-
-            //if(ifEndGame !=null && ifEndGame.gameObject.activeInHierarchy)
-            //IfEndGame.Instance.gameObject.SetActive(true);
-            
-            // if (endGameObj != null)
-            // {
-            //     endGameObj.SetActive(true);
-            //     IfEndGame ifEndGame = endGameObj.GetComponent<IfEndGame>();
-            //     IfEndGame.Instance.DeathCoroutine();
-                
-            // }
-            
-            
-            //IfEndGame ifEndGame = endGameObj.GetComponent<IfEndGame>();
-       
-            //ifEndGame.Death();
         }
     }
 }
