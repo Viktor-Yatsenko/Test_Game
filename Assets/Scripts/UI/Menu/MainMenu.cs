@@ -6,13 +6,10 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
-    //private Text OnButton;
-    //private Color originalTextColor;
     private int originalFontSize = 60;
     private int onPointerEnterFontSize = 80;
     private Color hoverTextColor = Color.white;
     private Dictionary<Text, Color> originalColors = new();
-
 
     private void Start()
     {
@@ -40,8 +37,6 @@ public class MainMenu : MonoBehaviour
                     text.fontSize = onPointerEnterFontSize;
                 });
                 trigger.triggers.Add(enter);
-                
-
 
                 // OnPointerExit
                 EventTrigger.Entry exit = new();
