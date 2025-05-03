@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Enemy Sounds Effect
+  m_Name: Main Menu UI
   m_EditorClassIdentifier: 
-  m_GroupName: Enemy Sounds Effect
-  m_GUID: bf568dbfd4f57b54b98e6ba6671b7daa
+  m_GroupName: Main Menu UI
+  m_GUID: a2b989044b192bb4f8e062c6ea8cbd25
   m_SerializeEntries:
-  - m_GUID: 228a434ca9f954909a9176e45f877eaa
-    m_Address: Assets/Sound/Sound Effects/Enemy/Enemy Death.wav
+  - m_GUID: d7f4f52e0d03f214b8b9ff47d92ab909
+    m_Address: Assets/Art/UI/White Sound Off.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ac6034ade498bb94b87620cdf6eac48b
-    m_Address: Assets/Sound/Sound Effects/Enemy/Enemy Attack.wav
+  - m_GUID: fd30afab859581246b9ba7593ee3c10c
+    m_Address: Assets/Art/UI/White Sound On.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -29,5 +29,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 0e5533208bd912a4e90c50f937df5139, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d49e367b6ad68834688be1acec072dd7, type: 2}
-    - {fileID: 11400000, guid: 52189608ada778e4586111d9941242f6, type: 2}
+    - {fileID: 11400000, guid: dfeda044a89e5dd4bab053cbcc405897, type: 2}
+    - {fileID: 11400000, guid: 0182b17af08bfcf4ba922701acbe3a62, type: 2}

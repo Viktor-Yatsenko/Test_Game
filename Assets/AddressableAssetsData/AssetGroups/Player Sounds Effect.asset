@@ -16,22 +16,22 @@ MonoBehaviour:
   m_GUID: c11b6180c31da48408cae905b4150bda
   m_SerializeEntries:
   - m_GUID: 4d54c55670fcb4c47bbd982b04edbf6d
-    m_Address: Assets/Sound Effects/Player/Sound miss attack.wav
+    m_Address: Assets/Sound/Sound Effects/Player/Sound miss attack.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5edbf413725bb496dbcfbffd6e219f59
-    m_Address: Assets/Sound Effects/Player/Take damage.wav
+    m_Address: Assets/Sound/Sound Effects/Player/Take damage.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4bfa42ba9539c746b82a62d3e973985
-    m_Address: Assets/Sound Effects/Player/Sound hit attack.wav
+    m_Address: Assets/Sound/Sound Effects/Player/Sound hit attack.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f0fba75baf76a514da1e094bc11a31be
-    m_Address: Assets/Sound Effects/Player/Player Running on Grass.wav
+    m_Address: Assets/Sound/Sound Effects/Player/Player Running on Grass.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

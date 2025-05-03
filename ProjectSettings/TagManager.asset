@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Menu
+  - UI
   layers:
   - Default
   - TransparentFX

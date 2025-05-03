@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour
                 enemySound.StartAttackSound(true);
                 TimerManager.Instance.RunAfter(0.7f, () => PlayerUIController.Instance.TakeDamage(damage));
                 lastAttackTime = Time.time;
+                Debug.Log("Attack");
             }
         }
 

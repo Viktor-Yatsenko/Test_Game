@@ -7,7 +7,7 @@ public class PlayerUIController : MonoBehaviour
     private PlayerSound playerSound;
     //Health
     [SerializeField] private Image imageHealth;
-    internal float currentHealth;
+    internal float currentHealth = 100f;
     //Mana
     [SerializeField] private Image imageMana;
     private float maxMana = 100f;
@@ -27,7 +27,7 @@ public class PlayerUIController : MonoBehaviour
     void Start()
     {
         playerSound = FindAnyObjectByType<PlayerSound>();
-        currentHealth = PlayerController.Instance.hp;
+        //currentHealth = PlayerController.Instance.hp;
         UpdateHealthBar();
         currentMana = maxMana;
         UpdateManaBar();

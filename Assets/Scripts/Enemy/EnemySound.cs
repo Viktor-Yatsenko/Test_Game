@@ -11,8 +11,8 @@ public class EnemySound : SoundController
 
     private void LoadFileSound()
     {
-        LoadSound("Assets/Sound Effects/Enemy/Enemy Attack.wav", clip => EnemyAttackSound = clip);
-        LoadSound("Assets/Sound Effects/Enemy/Enemy Death.wav", clip => EnemyDeathSound = clip);
+        LoadSound("Assets/Sound/Sound Effects/Enemy/Enemy Attack.wav", clip => EnemyAttackSound = clip);
+        LoadSound("Assets/Sound/Sound Effects/Enemy/Enemy Death.wav", clip => EnemyDeathSound = clip);
     }
 
     //Enemy attack

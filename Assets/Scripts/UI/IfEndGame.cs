@@ -14,6 +14,12 @@ public class IfEndGame : MonoBehaviour
     
     public void Death() 
     {
+        //Destroy enemy for player in new game don`t take damage
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+
         PlayerVisual.Instance.animator.enabled = true;
         gameObject.SetActive(true);
     }

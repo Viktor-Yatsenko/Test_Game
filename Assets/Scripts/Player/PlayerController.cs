@@ -96,9 +96,14 @@ public class PlayerController : MonoBehaviour
             attackTriggered = false;
         }
 
+        
         if (PlayerUIController.Instance.currentHealth <=0)
         {
             // добавить звук смерти
+            // foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            // {
+            //     Destroy(enemy);
+            // }
             enabled = false;
             PlayerVisual.Instance.Death();
             AudioListener.pause = true;
