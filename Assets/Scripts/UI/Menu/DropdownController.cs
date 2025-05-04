@@ -1,22 +1,23 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Dropdown))]
+[RequireComponent(typeof(TMP_Dropdown))]
 public class DropdownController : MonoBehaviour
 {
-    public float itemHeight = 40f; // Height one options
-    public float paddingTop = 0f;
-    public float paddingBottom = 0f;
+    [SerializeField] public float itemHeight = 110f; // Height one options
+    private float paddingTop = 0f;
+    private float paddingBottom = 0f;
 
     void Start()
     {
-        Dropdown dropdown = GetComponent<Dropdown>();
-        if (dropdown == null || dropdown.template == null) return;
+        TMP_Dropdown TMPdropdown = GetComponent<TMP_Dropdown>();
+        if (TMPdropdown == null || TMPdropdown.template == null) return;
 
-        int optionCount = dropdown.options.Count;
+        int optionCount = TMPdropdown.options.Count;
         if (optionCount == 0) return;
 
-        RectTransform templateRect = dropdown.template.GetComponent<RectTransform>();
+        RectTransform templateRect = TMPdropdown.template.GetComponent<RectTransform>();
         if (templateRect == null) return;
 
         // Calculate height

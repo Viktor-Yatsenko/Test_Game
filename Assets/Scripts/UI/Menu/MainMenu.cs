@@ -3,22 +3,26 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.TextCore.Text;
 
 public class MainMenu : MonoBehaviour
 {
     private int originalFontSize = 60;
     private int onPointerEnterFontSize = 80;
     private Color hoverTextColor = Color.white;
-    private Dictionary<Text, Color> originalColors = new();
+    private Dictionary<TextMeshProUGUI, Color> originalColors = new();
+    //private Dictionary<Text, Color> originalColors = new();
 
     private void Start()
     {
-        // Находим все кнопки в дочерних объектах Canvas
+        // Find all buttons in children object Canvas
         Button[] buttons = GetComponentsInChildren<Button>(true);
 
         foreach (Button btn in buttons)
         {
-            Text text = btn.GetComponentInChildren<Text>();
+            //Text text = btn.GetComponentInChildren<Text>();
+            TextMeshProUGUI text = btn.GetComponentInChildren<TextMeshProUGUI>();
             if (text != null)
             {
                 originalColors[text] = text.color;
