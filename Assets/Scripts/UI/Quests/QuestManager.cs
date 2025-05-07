@@ -24,14 +24,14 @@ public class QuestManager : MonoBehaviour
         questPanel.SetActive(true);
         questCompletePanel.SetActive(false);
         //Quest Text settings
-        questText.text = "Завдання:\n Тобі потрібно вбити 5 вовків";
+        questText.text = "Quest:\n You need to kill 5 werewolf";
         questText.fontSize = 40;
         questText.alignment = TextAlignmentOptions.MidlineGeoAligned;
     }
 
     void FixedUpdate()
     {
-        questCompleateText.text = "Завдання виконано!";
+        questCompleateText.text = "Quest is compleated!";
         questCompleateText.fontSize = 60;
         questCompleateText.alignment = TextAlignmentOptions.MidlineGeoAligned;
         // questCompleateText.alignment = TextAnchor.UpperCenter;

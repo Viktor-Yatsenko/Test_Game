@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour
     private Dictionary<TextMeshProUGUI, Color> originalColors = new();
     //private Dictionary<Text, Color> originalColors = new();
 
+    // Open menu animation
+    [Header("Animation settings menu")]
+    public Animator animator;
+    private bool isSettingsOpen = false;
+
     private void Start()
     {
         // Find all buttons in children object Canvas
@@ -67,8 +72,29 @@ public class MainMenu : MonoBehaviour
 
     public void Settings()
     {
-        
+        if(isSettingsOpen)
+        {
+            animator.SetTrigger("CloseMenu");
+        }
+        else
+        {
+            animator.SetTrigger("OpenMenu");
+        }
+        isSettingsOpen = !isSettingsOpen;
+
     }
+
+    // private void OpenMenu()
+    // {
+    //     animator.SetTrigger("OpenMenu 0");
+    //     //animator.SetBool("OpenMenu", stateMenu);
+    // }
+
+    // private void CloseMenu()
+    // {
+    //     //animator.SetTrigger("CloseMenu 0");
+    //     animator.SetBool("CloseMenu", true);
+    // }
 
     public void Exit()
     {
